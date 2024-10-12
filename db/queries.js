@@ -11,6 +11,16 @@ module.exports = {
     }
   },
 
+  getCategories: async () => {
+    try {
+      const { rows } = await pool.query("SELECT * FROM categories");
+      return rows;
+    } catch (error) {
+      console.error("Error retrieving categories:", error);
+      throw new Error("Could not retrieve categories. Please try again later.");
+    }
+  },
+
   getProductsByCategoryId: async (categoryId) => {
     try {
       const { rows } = await pool.query(
