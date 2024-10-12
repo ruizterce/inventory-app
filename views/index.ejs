@@ -6,6 +6,11 @@
     <title>Inventory app</title>
   </head>
   <body>
-    Hello World
+    <h2>Product inventory</h2>
+    <% products.map((product)=>{ %>
+    <div class="product-id">ID: <%= product.product_id %></div>
+    <div class="product-name">NAME: <%= product.name %></div>
+    <div class="product-name">QTY: <%= product.quantity_in_stock %></div>
+    <%})%>
   </body>
 </html>
