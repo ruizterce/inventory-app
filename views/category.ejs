@@ -15,5 +15,32 @@
     <div class="product-quantity">QTY: <%= product.quantity_in_stock %></div>
     <%})%>
     <a href="/category/<%= categoryId %>/update">Update Category</a>
+    <a href="#" class="delete-category">Delete Category</a>
   </body>
+
+  <script>
+    // Ask for confirmation on delete
+    document.querySelectorAll(".delete-category").forEach((link) => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        if (confirm("Are you sure you want to delete this category?")) {
+          fetch("/category/<%= categoryId %>/delete", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                window.location.href = "/";
+              } else {
+                alert("Error deleting category");
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+      });
+    });
+  </script>
 </html>

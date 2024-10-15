@@ -21,7 +21,7 @@ module.exports = {
   createPost: async function (req, res) {
     try {
       const { name, desc } = req.body;
-      db.addCategory(name, desc);
+      await db.addCategory(name, desc);
       res.redirect("/");
     } catch (error) {
       console.error("Error creating category:", error);
@@ -48,6 +48,16 @@ module.exports = {
       res.redirect("/");
     } catch (error) {
       console.error("Error updating category:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+
+  deletePost: async function (req, res) {
+    try {
+      await db.deleteCategory(req.params.categoryId);
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error deleting category:", error);
       res.status(500).send("Internal Server Error");
     }
   },

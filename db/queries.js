@@ -89,6 +89,19 @@ module.exports = {
     }
   },
 
+  deleteCategory: async (id) => {
+    try {
+      await pool.query(
+        `DELETE FROM categories
+        WHERE category_id = ${id};`
+      );
+      return;
+    } catch (error) {
+      console.error("Error deleting category:", error);
+      throw new Error("Could not delete category. Please try again later.");
+    }
+  },
+
   getBrands: async () => {
     try {
       const { rows } = await pool.query(
@@ -150,6 +163,19 @@ module.exports = {
     } catch (error) {
       console.error("Error updating brand:", error);
       throw new Error("Could not update brand. Please try again later.");
+    }
+  },
+
+  deleteBrand: async (id) => {
+    try {
+      await pool.query(
+        `DELETE FROM brands
+        WHERE brand_id = ${id};`
+      );
+      return;
+    } catch (error) {
+      console.error("Error deleting brand:", error);
+      throw new Error("Could not delete brand. Please try again later.");
     }
   },
 };

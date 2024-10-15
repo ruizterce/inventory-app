@@ -20,7 +20,7 @@ module.exports = {
   createPost: async function (req, res) {
     try {
       const { name, desc } = req.body;
-      db.addBrand(name, desc);
+      await db.addBrand(name, desc);
       res.redirect("/");
     } catch (error) {
       console.error("Error creating brand:", error);
@@ -47,6 +47,16 @@ module.exports = {
       res.redirect("/");
     } catch (error) {
       console.error("Error updating brand:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+
+  deletePost: async function (req, res) {
+    try {
+      await db.deleteBrand(req.params.brandId);
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error deleting brand:", error);
       res.status(500).send("Internal Server Error");
     }
   },
