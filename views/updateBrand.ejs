@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Brand</title>
+  </head>
+  <body>
+    <form action="/brand/<%= brand.brand_id %>/update" method="POST">
+      <input type="text" name="name" value="<%= brand.name %>" required />
+      <textarea name="desc" id="desc"> <%= brand.description %> </textarea>
+      <button type="submit">Update</button>
+    </form>
+    <a href="/">Back to home</a>
+  </body>
+</html>

@@ -101,6 +101,18 @@ module.exports = {
     }
   },
 
+  getBrandById: async (brandId) => {
+    try {
+      const { rows } = await pool.query(
+        `SELECT * FROM brands WHERE brand_id = ${brandId}`
+      );
+      return rows[0];
+    } catch (error) {
+      console.error("Error retrieving brand:", error);
+      throw new Error("Could not retrieve brand. Please try again later.");
+    }
+  },
+
   getProductsByBrandId: async (brandId) => {
     try {
       const { rows } = await pool.query(
@@ -110,6 +122,34 @@ module.exports = {
     } catch (error) {
       console.error("Error retrieving products:", error);
       throw new Error("Could not retrieve products. Please try again later.");
+    }
+  },
+
+  addBrand: async (name, desc) => {
+    try {
+      await pool.query(
+        `INSERT INTO Brands (name, description) VALUES
+        ('${name}', '${desc}')
+        ON CONFLICT (name) DO NOTHING;`
+      );
+      return;
+    } catch (error) {
+      console.error("Error creating brand:", error);
+      throw new Error("Could not create brand. Please try again later.");
+    }
+  },
+
+  updateBrand: async (id, name, desc) => {
+    try {
+      await pool.query(
+        `UPDATE brands
+        SET name = '${name}', description = '${desc}'
+        WHERE brand_id = ${id};`
+      );
+      return;
+    } catch (error) {
+      console.error("Error updating brand:", error);
+      throw new Error("Could not update brand. Please try again later.");
     }
   },
 };
