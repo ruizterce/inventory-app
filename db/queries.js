@@ -11,6 +11,18 @@ module.exports = {
     }
   },
 
+  getProductById: async (productId) => {
+    try {
+      const { rows } = await pool.query(
+        `SELECT * FROM products WHERE product_id = ${productId}`
+      );
+      return rows[0];
+    } catch (error) {
+      console.error("Error retrieving products:", error);
+      throw new Error("Could not retrieve products. Please try again later.");
+    }
+  },
+
   getCategories: async () => {
     try {
       const { rows } = await pool.query("SELECT * FROM categories");

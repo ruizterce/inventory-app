@@ -6,6 +6,11 @@
     <title>Inventory app</title>
   </head>
   <body>
-    Product <%= productId %>
+    <div>
+      <%= product.product_id %> <%= product.name %> <%= product.description %>
+      <%= product.price %> <%= product.quantity_in_stock %> <%=
+      product.category_id %> <%= product.brand_id %> <%= product.created_at %>
+      <%= product.updated_at %>
+    </div>
   </body>
 </html>
