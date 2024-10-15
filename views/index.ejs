@@ -8,12 +8,22 @@
   <body>
     <h2>Categories</h2>
     <% categories.map((category)=>{ %>
-    <div class="product-id">ID: <%= category.category_id %></div>
+    <div class="category-id">ID: <%= category.category_id %></div>
     <div class="category-name">
       <a href="/category/<%=category.category_id%>"><%= category.name %></a>
     </div>
-    <div class="product-quantity">DESC: <%= category.description %></div>
+    <div class="category-description">DESC: <%= category.description %></div>
     <%})%>
+
+    <h2>Brands</h2>
+    <% brands.map((brand)=>{ %>
+    <div class="brand-id">ID: <%= brand.brand_id %></div>
+    <div class="brand-name">
+      <a href="/brand/<%=brand.brand_id%>"><%= brand.name %></a>
+    </div>
+    <div class="brand-description">DESC: <%= brand.description %></div>
+    <%})%>
+
     <h2>Product inventory</h2>
     <% products.map((product)=>{ %>
     <div class="product-id">ID: <%= product.product_id %></div>

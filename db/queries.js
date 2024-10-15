@@ -44,4 +44,26 @@ module.exports = {
       throw new Error("Could not retrieve products. Please try again later.");
     }
   },
+
+  getBrands: async () => {
+    try {
+      const { rows } = await pool.query("SELECT * FROM brands");
+      return rows;
+    } catch (error) {
+      console.error("Error retrieving brands:", error);
+      throw new Error("Could not retrieve brands. Please try again later.");
+    }
+  },
+
+  getProductsByBrandId: async (brandId) => {
+    try {
+      const { rows } = await pool.query(
+        `SELECT * FROM Products p WHERE brand_id = ${brandId}`
+      );
+      return rows;
+    } catch (error) {
+      console.error("Error retrieving products:", error);
+      throw new Error("Could not retrieve products. Please try again later.");
+    }
+  },
 };

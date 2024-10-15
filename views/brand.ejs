@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory app</title>
+  </head>
+  <body>
+    <h2>Brand <%= brandId %></h2>
+    <% products.map((product)=>{ %>
+    <div class="product-id">ID: <%= product.product_id %></div>
+    <div class="product-name">
+      <a href="/product/<%= product.product_id %>"><%= product.name %></a>
+    </div>
+    <div class="product-quantity">QTY: <%= product.quantity_in_stock %></div>
+    <%})%>
+  </body>
+</html>

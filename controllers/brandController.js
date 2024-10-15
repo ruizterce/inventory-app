@@ -3,12 +3,9 @@ const db = require("../db/queries");
 module.exports = {
   get: async function (req, res) {
     try {
-      const categories = await db.getCategories();
-      const brands = await db.getBrands();
-      const products = await db.getAllProducts();
-      res.render("index", {
-        categories: categories,
-        brands: brands,
+      const products = await db.getProductsByBrandId(req.params.brandId);
+      res.render("brand", {
+        brandId: req.params.brandId,
         products: products,
       });
     } catch (error) {
