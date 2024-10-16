@@ -61,6 +61,19 @@ module.exports = {
     }
   },
 
+  deleteProduct: async (id) => {
+    try {
+      await pool.query(
+        `DELETE FROM products
+        WHERE product_id = ${id};`
+      );
+      return;
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      throw new Error("Could not delete product. Please try again later.");
+    }
+  },
+
   getCategories: async () => {
     try {
       const { rows } = await pool.query(

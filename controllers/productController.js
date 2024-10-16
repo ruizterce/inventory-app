@@ -69,4 +69,14 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+
+  deletePost: async function (req, res) {
+    try {
+      await db.deleteProduct(req.params.productId);
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
 };
