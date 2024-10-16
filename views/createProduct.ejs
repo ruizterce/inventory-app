@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Product</title>
+  </head>
+  <body>
+    <h1>Create Product</h1>
+    <form action="/product/create" method="POST">
+      <label for="name">Product name: </label>
+      <input type="text" name="name" id="name" required />
+      <label for="desc">Description: </label>
+      <textarea name="desc" id="desc" required></textarea>
+      <label for="price">Price: </label>
+      <input
+        type="number"
+        name="price"
+        id="price"
+        step="0.01"
+        min="0"
+        placeholder="0.00"
+        required
+      />
+      <label for="quantity">Quantity in stock: </label>
+      <input
+        type="number"
+        name="quantity"
+        id="quantity"
+        min="0"
+        placeholder="0"
+        required
+      />
+      <label for="categoryId">Category: </label>
+      <select id="categoryId" name="categoryId">
+        <% categories.map((category)=>{%>
+        <option value="<%=category.category_id%>"><%=category.name%></option>
+        <% })%>
+      </select>
+      <label for="brandId">Brand: </label>
+      <select id="brandId" name="brandId">
+        <% brands.map((brand)=>{%>
+        <option value="<%=brand.brand_id%>"><%=brand.name%></option>
+        <% })%>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <a href="/">Back to home</a>
+  </body>
+</html>

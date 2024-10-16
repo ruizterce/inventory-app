@@ -25,6 +25,42 @@ module.exports = {
     }
   },
 
+  addProduct: async (name, desc, price, quantity, categoryId, brandId) => {
+    try {
+      await pool.query(
+        `INSERT INTO Products (name, description, price, quantity_in_stock, category_id, brand_id) VALUES
+        ('${name}', '${desc}', '${price}', '${quantity}', '${categoryId}', '${brandId}')
+        ON CONFLICT (name) DO NOTHING;`
+      );
+      return;
+    } catch (error) {
+      console.error("Error creating product:", error);
+      throw new Error("Could not create product. Please try again later.");
+    }
+  },
+
+  updateProduct: async (
+    id,
+    name,
+    desc,
+    price,
+    quantity,
+    categoryId,
+    brandId
+  ) => {
+    try {
+      await pool.query(
+        `UPDATE products
+        SET name = '${name}', description = '${desc}', price = '${price}', quantity_in_stock = '${quantity}', category_id = '${categoryId}', brand_id = '${brandId}'
+        WHERE product_id = ${id};`
+      );
+      return;
+    } catch (error) {
+      console.error("Error updating product:", error);
+      throw new Error("Could not update product. Please try again later.");
+    }
+  },
+
   getCategories: async () => {
     try {
       const { rows } = await pool.query(
