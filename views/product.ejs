@@ -3,13 +3,15 @@
   <h2 class="text-2xl font-bold text-green-400 mb-4"><%= product.name %></h2>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <% const details = [ { label: "ID", value: product.product_id }, { label:
-    "Description", value: product.description }, { label: "Price", value:
+    <% const details = [ { label: "Product ID", value: product.product_id }, {
+    label: "Description", value: product.description }, { label: "Price", value:
     `$${product.price}` }, { label: "Quantity in Stock", value:
     product.quantity_in_stock }, { label: "Category ID", value:
-    product.category_id }, { label: "Brand ID", value: product.brand_id }, {
-    label: "Created At", value: product.created_at }, { label: "Updated At",
-    value: product.updated_at } ]; %> <% details.forEach(detail => { %>
+    product.category_id }, { label: "Category Name", value:
+    product.category_name }, { label: "Brand ID", value: product.brand_id }, {
+    label: "Brand Name", value: product.brand_name }, { label: "Created At",
+    value: product.created_at }, { label: "Updated At", value:
+    product.updated_at } ]; %> <% details.forEach(detail => { %>
     <div class="border border-gray-300 p-4 rounded">
       <div class="text-sm text-gray-500"><%= detail.label %></div>
       <div class="font-bold text-gray-800"><%= detail.value %></div>

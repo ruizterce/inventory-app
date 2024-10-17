@@ -4,7 +4,7 @@ module.exports = {
   getAllProducts: async () => {
     try {
       const { rows } = await pool.query(
-        "SELECT * FROM products ORDER BY product_id"
+        "SELECT p.product_id, p.name AS name, p.description AS description, p.price, p.quantity_in_stock, c.name AS category_name, b.name AS brand_name, p.created_at, p.updated_at FROM Products p LEFT JOIN Categories c ON p.category_id = c.category_id LEFT JOIN Brands b ON p.brand_id = b.brand_id ORDER BY p.product_id"
       );
       return rows;
     } catch (error) {
@@ -16,7 +16,7 @@ module.exports = {
   getProductById: async (productId) => {
     try {
       const { rows } = await pool.query(
-        `SELECT * FROM products WHERE product_id = ${productId}`
+        `SELECT p.product_id, p.name AS name, p.description AS description, p.price, p.quantity_in_stock, p.category_id, c.name AS category_name, p.brand_id, b.name AS brand_name, p.created_at, p.updated_at FROM Products p LEFT JOIN Categories c ON p.category_id = c.category_id LEFT JOIN Brands b ON p.brand_id = b.brand_id WHERE product_id = ${productId}`
       );
       return rows[0];
     } catch (error) {
