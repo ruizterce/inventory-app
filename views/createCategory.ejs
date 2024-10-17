@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Category</title>
-  </head>
-  <body>
-    <h1>Create Category</h1>
-    <form action="/category/create" method="POST">
-      <label for="name">Category name: </label>
-      <input type="text" name="name" id="name" required />
-      <label for="desc">Description: </label>
-      <textarea name="desc" id="desc" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <a href="/">Back to home</a>
-  </body>
-</html>
+<% title = "Create Category"; %>
+<h1>Create Category</h1>
+<form action="/category/create" method="POST">
+  <label for="name">Category name: </label>
+  <input type="text" name="name" id="name" required />
+  <label for="desc">Description: </label>
+  <textarea name="desc" id="desc" required></textarea>
+  <button type="submit">Submit</button>
+</form>
+<a href="/">Back to home</a>

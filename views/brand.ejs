@@ -1,46 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inventory app</title>
-  </head>
-  <body>
-    <h2>Brand <%= brandId %></h2>
-    <% products.map((product)=>{ %>
-    <div class="product-id">ID: <%= product.product_id %></div>
-    <div class="product-name">
-      <a href="/product/<%= product.product_id %>"><%= product.name %></a>
-    </div>
-    <div class="product-quantity">QTY: <%= product.quantity_in_stock %></div>
-    <%})%>
-    <a href="/brand/<%= brandId %>/update">Update Brand</a>
-    <a href="#" class="delete-brand">Delete Brand</a>
-  </body>
+<% title = `Brand ${brandId}`; %>
+<h2>Brand <%= brandId %></h2>
+<% products.map((product)=>{ %>
+<div class="product-id">ID: <%= product.product_id %></div>
+<div class="product-name">
+  <a href="/product/<%= product.product_id %>"><%= product.name %></a>
+</div>
+<div class="product-quantity">QTY: <%= product.quantity_in_stock %></div>
+<%})%>
+<a href="/brand/<%= brandId %>/update">Update Brand</a>
+<a href="#" class="delete-brand">Delete Brand</a>
 
-  <script>
-    // Ask for confirmation on delete
-    document.querySelectorAll(".delete-brand").forEach((link) => {
-      link.addEventListener("click", function (event) {
-        event.preventDefault();
+<script>
+  // Ask for confirmation on delete
+  document.querySelectorAll(".delete-brand").forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
 
-        if (confirm("Are you sure you want to delete this brand?")) {
-          fetch("/brand/<%= brandId %>/delete", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+      if (confirm("Are you sure you want to delete this brand?")) {
+        fetch("/brand/<%= brandId %>/delete", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              window.location.href = "/";
+            } else {
+              alert("Error deleting brand");
+            }
           })
-            .then((response) => {
-              if (response.ok) {
-                window.location.href = "/";
-              } else {
-                alert("Error deleting brand");
-              }
-            })
-            .catch((error) => console.error("Error:", error));
-        }
-      });
+          .catch((error) => console.error("Error:", error));
+      }
     });
-  </script>
-</html>
+  });
+</script>
