@@ -1,54 +1,46 @@
 <% title = "Update Product"; %>
-    <h1>Update Product</h1>
-    <form action="/product/<%= product.product_id%>/update" method="POST">
-      <label for="name">Product name: </label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        value="<%= product.name %>"
-        required
-      />
-      <label for="desc">Description: </label>
-      <textarea name="desc" id="desc" required>
-        <%= product.description %>
-        </textarea
-      >
-      <label for="price">Price: </label>
-      <input
-        type="number"
-        name="price"
-        id="price"
-        step="0.01"
-        min="0"
-        value="<%= product.price %>"
-        required
-      />
-      <label for="quantity">Quantity in stock: </label>
-      <input
-        type="number"
-        name="quantity"
-        id="quantity"
-        min="0"
-        value="<%= product.quantity_in_stock %>"
-        required
-      />
-      <label for="categoryId">Category: </label>
-        <select id="categoryId" name="categoryId">
-            <% categories.map((category) => { %>
-            <option value="<%= category.category_id %>" <%= product.category_id === category.category_id ? "selected" : "" %>>
-                <%= category.name %>
-            </option>
-            <% }) %>
-        </select>
-      <label for="brandId">Brand: </label>
-      <select id="brandId" name="brandId">
-        <% brands.map((brand) => { %>
-        <option value="<%= brand.brand_id %>" <%= product.brand_id === brand.brand_id ? "selected" : "" %>>
-            <%= brand.name %>
-        </option>
-        <% })%>
+<div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-200">
+  <h1 class="text-2xl font-bold text-green-400 mb-4">Update Product</h1>
+  <form action="/product/<%= product.product_id %>/update" method="POST">
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700">Product Name:</label>
+      <input type="text" name="name" id="name" value="<%= product.name %>" required
+             class="w-full border border-gray-300 p-2 rounded" />
+    </div>
+    <div class="mb-4">
+      <label for="desc" class="block text-gray-700">Description:</label>
+      <textarea name="desc" id="desc" required
+                class="w-full border border-gray-300 p-2 rounded"><%= product.description %></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="price" class="block text-gray-700">Price:</label>
+      <input type="number" name="price" id="price" step="0.01" min="0" value="<%= product.price %>" required
+             class="w-full border border-gray-300 p-2 rounded" />
+    </div>
+    <div class="mb-4">
+      <label for="quantity" class="block text-gray-700">Quantity in Stock:</label>
+      <input type="number" name="quantity" id="quantity" min="0" value="<%= product.quantity_in_stock %>" required
+             class="w-full border border-gray-300 p-2 rounded" />
+    </div>
+    <div class="mb-4">
+      <label for="categoryId" class="block text-gray-700">Category:</label>
+      <select id="categoryId" name="categoryId" required
+              class="w-full border border-gray-300 p-2 rounded">
+        <% categories.map((category) => { %>
+          <option value="<%= category.category_id %>" <%= product.category_id === category.category_id ? "selected" : "" %>> <%= category.name %> </option>
+        <% }) %>
       </select>
-      <button type="submit">Submit</button>
-    </form>
-    <a href="/">Back to home</a>
+    </div>
+    <div class="mb-4">
+      <label for="brandId" class="block text-gray-700">Brand:</label>
+      <select id="brandId" name="brandId" required
+              class="w-full border border-gray-300 p-2 rounded">
+        <% brands.map((brand) => { %>
+          <option value="<%= brand.brand_id %>" <%= product.brand_id === brand.brand_id ? "selected" : "" %>> <%= brand.name %> </option>
+        <% }) %>
+      </select>
+    </div>
+    <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200">Update</button>
+  </form>
+  <a href="/" class="block mt-4 text-green-500 hover:text-green-700 underline">Back to home</a>
+</div>

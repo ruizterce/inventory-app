@@ -1,31 +1,108 @@
 <% title = 'Home - Inventory App'; %>
 
-<h2>Categories</h2>
-<% categories.map((category)=>{ %>
-<div class="category-id">ID: <%= category.category_id %></div>
-<div class="category-name">
-  <a href="/category/<%=category.category_id%>"><%= category.name %></a>
-</div>
-<div class="category-description">DESC: <%= category.description %></div>
-<%})%>
-<a href="/category/new">New Category</a>
+<h2 class="text-2xl font-bold my-6 text-green-400">Categories</h2>
+<table class="min-w-full bg-white border border-gray-200 mb-8">
+  <thead>
+    <tr class="bg-green-100">
+      <th class="py-2 px-4 text-left">ID</th>
+      <th class="py-2 px-4 text-left">Name</th>
+      <th class="py-2 px-4 text-left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% categories.map((category) => { %>
+    <tr class="hover:bg-gray-100 transition duration-200">
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= category.category_id %>
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <a
+          href="/category/<%= category.category_id %>"
+          class="text-green-500 hover:text-green-700 transition duration-200"
+          ><%= category.name %></a
+        >
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= category.description %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<a href="/category/new" class="text-green-500 hover:text-green-700 underline"
+  >New Category</a
+>
 
-<h2>Brands</h2>
-<% brands.map((brand)=>{ %>
-<div class="brand-id">ID: <%= brand.brand_id %></div>
-<div class="brand-name">
-  <a href="/brand/<%=brand.brand_id%>"><%= brand.name %></a>
-</div>
-<div class="brand-description">DESC: <%= brand.description %></div>
-<%})%>
-<a href="/brand/new">New Brand</a>
+<h2 class="text-2xl font-bold my-6 text-green-400">Brands</h2>
+<table class="min-w-full bg-white border border-gray-200 mb-8">
+  <thead>
+    <tr class="bg-green-100">
+      <th class="py-2 px-4 text-left">ID</th>
+      <th class="py-2 px-4 text-left">Name</th>
+      <th class="py-2 px-4 text-left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% brands.map((brand) => { %>
+    <tr class="hover:bg-gray-100 transition duration-200">
+      <td class="py-2 px-4 border-b border-gray-200"><%= brand.brand_id %></td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <a
+          href="/brand/<%= brand.brand_id %>"
+          class="text-green-500 hover:text-green-700 transition duration-200"
+          ><%= brand.name %></a
+        >
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= brand.description %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<a href="/brand/new" class="text-green-500 hover:text-green-700 underline"
+  >New Brand</a
+>
 
-<h2>Product inventory</h2>
-<% products.map((product)=>{ %>
-<div class="product-id">ID: <%= product.product_id %></div>
-<div class="product-name">
-  <a href="/product/<%= product.product_id %>"><%= product.name %></a>
-</div>
-<div class="product-quantity">QTY: <%= product.quantity_in_stock %></div>
-<%})%>
-<a href="/product/new">New Product</a>
+<h2 class="text-2xl font-bold my-6 text-green-400">Product Inventory</h2>
+<table class="min-w-full bg-white border border-gray-200 mb-8">
+  <thead>
+    <tr class="bg-green-100">
+      <th class="py-2 px-4 text-left">ID</th>
+      <th class="py-2 px-4 text-left">Name</th>
+      <th class="py-2 px-4 text-left">Price</th>
+      <th class="py-2 px-4 text-left">Category</th>
+      <th class="py-2 px-4 text-left">Brand</th>
+      <th class="py-2 px-4 text-left">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.map((product) => { %>
+    <tr class="hover:bg-gray-100 transition duration-200">
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= product.product_id %>
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <a
+          href="/product/<%= product.product_id %>"
+          class="text-green-500 hover:text-green-700 transition duration-200"
+          ><%= product.name %></a
+        >
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200"><%= product.price %></td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= product.category_id %>
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= product.brand_id %>
+      </td>
+      <td class="py-2 px-4 border-b border-gray-200">
+        <%= product.quantity_in_stock %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<a href="/product/new" class="text-green-500 hover:text-green-700 underline"
+  >New Product</a
+>
